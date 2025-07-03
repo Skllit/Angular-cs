@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Post } from './Interface/Post.interface';
 
 @Component({
   selector: 'app-root',
@@ -25,15 +26,26 @@ export class AppComponent implements OnInit {
   firstText:string="hello"
   messages:string[]=[];
 
-  posts:any[]=[];
+  posts:Post[]=[];
 
   constructor(private messageService:MessageService){
     this.messages=this.messageService.getmessage()
 
   }
 ngOnInit(): void {
-  this.messageService.getPost().subscribe(res=>{
-    this.posts=res;
+
+  // this.messageService.getPost().subscribe(res=>{
+  //   this.posts=res;
+  // })
+
+  this.messageService.getPost().subscribe({
+    next:(res:Post[])=>{
+      this.posts=res;
+    },
+    error:(error)=>{
+      console.log(error)
+
+    }
   })
 
 }

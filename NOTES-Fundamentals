@@ -221,6 +221,29 @@ ngOnInit(): void {
 
 }
 ----------------------------------------------------------
+typecheck is the datatype we create ourself
+Interface
+
+
+Interface folder/InterfaceName.Interface.ts
+
+create the interface according to the api data
+
+export Interface Post{
+    userId:string;
+    id:number;
+    title:string;
+    body:string;
+}
+
+use it in services and datatypes
+
+ posts:Post[]=[];
+
+  getPost(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.api);
+  }
+  -------------------------------------------------------------
 
 
 
