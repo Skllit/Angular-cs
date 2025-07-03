@@ -187,6 +187,40 @@ app componant
 {{messages}}
 output: msg1 msg2
 -----------------------------------------------------------------------------------
+HTTP CLIENT AND api
+---------------------------------------------------------------------------------
+provideHttpClient
+---------------------------------------
+add this  in app .module.ts
+import { provideHttpClient } from '@angular/common/http';
+providers: [MessageService,provideHttpClient()],
+
+
+--------------------------------------------------------
+export class MessageService {
+  api: string = 'https://jsonplaceholder.typicode.com/posts';
+
+  constructor(private http: HttpClient) {}
+
+  getPost(): Observable<any[]> {
+    return this.http.get<any[]>(this.api);
+  }
+}
+--------------------------------------------------------------
+
+  posts:any[]=[];
+
+  constructor(private messageService:MessageService){
+    this.messages=this.messageService.getmessage()
+
+  }
+ngOnInit(): void {
+  this.messageService.getPost().subscribe(res=>{
+    this.posts=res;
+  })
+
+}
+----------------------------------------------------------
 
 
 

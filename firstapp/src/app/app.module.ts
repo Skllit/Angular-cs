@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppendPipe } from './pipes/append.pipe';
 import { MessageService } from './Services/message.service';
 import { Append2Pipe } from './pipes/append2.pipe';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { Append2Pipe } from './pipes/append2.pipe';
     BrowserModule,FormsModule,
     AppRoutingModule
   ],
-  providers: [MessageService],
+  providers: [MessageService,provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
