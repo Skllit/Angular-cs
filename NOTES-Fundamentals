@@ -1,5 +1,69 @@
+Commands
+1.npx npm install -g @angular/cli
+2.npx ng new appname
+
+
+
+
+
+
+-------------------------------------------------------
 Angular
 built by google
 SPA-single page application
 
-npx npm install -g @angular/cli
+
+
+Data binding (interpolation)
+1.oneway  (interpolation) =={{}}
+2.twoway   [(ngmodel)]== interpolation
+
+1.oneway  (interpolation) =={{}}
+--------------------------------------
+export class AppComponent {
+  title:string="bob";
+  imagevar:string="url of image"
+  bgcolor:string="blue";
+  counter:number=0;
+
+  //eventbinding
+incrementCounter(){
+  this.counter++;
+}
+
+}
+-------
+html
+-------
+
+<h1>{{title}}</h1>
+
+//Attribute binding
+<img [src]="imagevar"/>
+
+//style binding
+<h1 [style.backgroundColor]="bgcolor">
+
+//eventbinding
+{{counter}}
+<button (click)="incrememtCounter"></button>
+
+
+---------------------------------------
+Two way Data binding
+[(ngmodel)]=""
+
+1.import FORMMODULE in appmodule.this
+
+2.AppComponent
+  inputText:string="hello";
+
+3.AppComponent.html
+  <input type="text" [(ngModel)]="inputText"/>
+   <h1>{{inputText}}</h1>
+
+   ------------------------------------------------
+
+
+   
+
