@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppendPipe } from './pipes/append.pipe';
 import { MessageService } from './Services/message.service';
+import { Append2Pipe } from './pipes/append2.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppendPipe
+    AppendPipe,
+    Append2Pipe
   ],
   imports: [
     BrowserModule,FormsModule,

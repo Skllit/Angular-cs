@@ -1,7 +1,8 @@
 Commands
 1.npx npm install -g @angular/cli
 2.npx ng new appname
-
+3.npx ng generate pipe Pipes/append --->creates pipe for appending in  pipes folder 
+4.
 
 
 
@@ -98,6 +99,43 @@ Two way Data binding
   </div> -->
 
   -------------------------------------------------------------------------
+  PIPES
+  ------------------
+  today:number=Date.now();
+  currency:number=250;
+
+
+   {{today | date}}
+   {{today | date: "fulldate"}}
+   {{today | date: "hh:mm:ss"}}
+   {{currency | currency}}
+   {{currency | currency: "USD"}}
+   {{currency | currency:"EUR"}}
+   {{currency | percent}}
+--------------------------------------------------------
+custom pipes
+---------------------------------------
+
+1. ng generate pipe folder/pipename
+
+2. sometitle:sring="firstText"
+
+3.{{firstText | append:"SecondText"}}
+
+4.
+export class Append2Pipe implements PipeTransform {
+
+  transform(value: string, anyname:string): string {
+    return value+anyname;
+  }
+
+}
+
+5. output=  firstTextSecondText
+
+-----------------------------------------------------------------------------------------
+
+
 
 
 

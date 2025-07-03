@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 // implements OnInit
 export class AppComponent {
-   userName:string="Stark"
+  userName:string="Stark"
   isloggedin:boolean=true;
   grade:string="B"
   names:string[]=["abc","bcd","efg"];
@@ -18,6 +18,8 @@ export class AppComponent {
   title:string="bob";
   counter:number=0;
   inputText:string="hello";
+
+  firstText:string="hello"
 
 
 
