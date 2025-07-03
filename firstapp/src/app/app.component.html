@@ -1,5 +1,27 @@
-<h1>{{counter}}</h1>
-<button (click)="incrementCounter()">Incre</button>
+<!-- <h1>{{counter}}</h1>
+<button (click)="incrementCounter()">Incre</button> -->
 
 <input type="text" [(ngModel)]="inputText"/>
 <h1>{{inputText}}</h1>
+
+<!-- ngif -->
+<!-- <h1 *ngIf="isloggedin">welcome {{userName}}</h1>
+<h1 *ngIf="!isloggedin">click to login</h1> -->
+
+
+<!-- ng-if with else -->
+<!-- <h1 *ngIf="isloggedin; else loggedout" >welcome {{userName}}</h1>
+<ng-template #loggedout>login</ng-template> -->
+
+<!-- Switch
+<div  [ngSwitch]="grade">
+  <h1 *ngSwitchCase="'A'">Excellent</h1>
+  <h1 *ngSwitchCase="'B'"> good</h1>
+  <h1 *ngSwitchCase="'C'">nice</h1>
+</div> -->
+
+  <!-- ng-for -->
+<!-- <div *ngFor="let i of names">
+  <h1>{{i}}</h1>
+</div> -->
+

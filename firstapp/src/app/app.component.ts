@@ -10,10 +10,21 @@ import { FormsModule } from '@angular/forms';
 })
 // implements OnInit
 export class AppComponent {
+  grade:string="B"
+  names:string[]=["abc","bcd","efg"];
   title:string="bob";
   counter:number=0;
-
   inputText:string="hello";
+  userName:string="Stark"
+  isloggedin:boolean=true;
+
+
+
+
+
+
+
+
 
   incrementCounter(){
     this.counter++;

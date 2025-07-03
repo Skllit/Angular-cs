@@ -8,7 +8,7 @@ Commands
 
 
 -------------------------------------------------------
-Angular
+Angular 16
 built by google
 SPA-single page application
 
@@ -63,7 +63,9 @@ Two way Data binding
    <h1>{{inputText}}</h1>
 
    ------------------------------------------------
+   Structure Directives
+
+   ngif ,ngfor ,ng switch
 
 
-   
 
