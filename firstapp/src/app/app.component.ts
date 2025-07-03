@@ -6,7 +6,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers:[MessageService]
 })
 // implements OnInit
 export class AppComponent {
@@ -20,8 +21,12 @@ export class AppComponent {
   inputText:string="hello";
 
   firstText:string="hello"
+  messages:string[]=[];
 
+  constructor(private messageService:MessageService){
+    this.messages=this.messageService.getmessage()
 
+  }
 
 
 

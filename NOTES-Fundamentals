@@ -2,7 +2,8 @@ Commands
 1.npx npm install -g @angular/cli
 2.npx ng new appname
 3.npx ng generate pipe Pipes/append --->creates pipe for appending in  pipes folder 
-4.
+4.npx ng generate service folder/serviceName
+5.
 
 
 
@@ -134,7 +135,58 @@ export class Append2Pipe implements PipeTransform {
 5. output=  firstTextSecondText
 
 -----------------------------------------------------------------------------------------
+Dependency Injection
+-----------------------------------------------------------
+npx ng generate service folder/serviceName
+npx ng g s services/message
 
+to add the services to all 
+add in providers[] of 
+app.module.ts 
+
+or in that componant-
+app.componant.ts
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  standalone: false,
+  styleUrl: './app.component.scss',
+  providers:[MessageService]
+})
+
+1.we create service -message service
+2.we create function in message service
+3.to use the service in other componant 
+4.so we make it as object and we use, this is DependencyInjection
+5.***constructor are used to instantiate any object of the class***
+6. we can use the service in  constructor, function , of lifecyclehook(ngoninit)
+
+example
+
+service
+-------------
+export class MessageService {
+
+  constructor() { }
+
+  getmessage(){
+    return ["msg1","msg2"]
+  }
+}
+--------------------------
+app componant
+-------
+ messages:string[]=[];
+
+  constructor(private messageService:MessageService){ <---- injecting the service
+    this.messages=this.messageService.getmessage()    <---- using the service
+
+  }
+
+--------------------------------------------------------
+{{messages}}
+output: msg1 msg2
+-----------------------------------------------------------------------------------
 
 
 
