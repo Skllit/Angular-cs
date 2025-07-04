@@ -1,0 +1,2 @@
+{{title}}
+<app-task *ngFor="let t of tasks" [task]="t" (taskDeleted)="deleteTask(t)"></app-task>

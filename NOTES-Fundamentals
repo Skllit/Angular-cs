@@ -5,7 +5,10 @@ Commands
 4.npx ng generate service folder/serviceName
 5.npx npm install -g json-server
       json-server --watch file.json --port 1111
-6.
+6.npx ng generate component folder/comp name
+7.npx ng new firstapp --standalone=false
+8.npx ng new appname --no-standalone
+
 
 
 
@@ -295,6 +298,7 @@ import FormBuilder,formGroup ,validators in componant
 
 
 in app.componant.ts
+import { EventEmitter } from 'stream'
 
  userForm!:FormGroup;
   constructor(private formBuilder:FormBuilder){
@@ -317,4 +321,79 @@ in app.componant.ts
 <input type="text" name="Email" formControlName="Email">
 <button> submit</button>
 </form>
+----------------------------------------------------------------
+componant communication---- @input @delete EventEmitter
+----------------------------------------------------------------
+ng generate component folder/comp name
+
+ng g c folder/comp
+
+after creating add the component manually
+to the app.module.ts
+ in import and declarations
+
+----------------------------------------------------------------------
+Parent -To -Child;
+-------
+export class AppComponent {
+  title = 'Secondapp';
+
+  tasks:string[]=["task1","task2","task3"] <------parent has data
+}
+----------------------------------------------------------------
+{{title}}
+<app-task *ngFor="let t of tasks" [task]="t">  <----- 1. can pass to child like this
+</app-task>  
+-----------------------------------------------------------------
+
+Child
+---------
+export class TaskComponent {
+  @Input() task:string="";                      <---- 2. the passed data is recieved by child here
+}
+---------------------------------------
+{{task}}                                         <--- 3. rendered
+<button>Delete</button>                           
+<br>
+
+
+------------------------------------------------------------------------------------------------
+****child to parent
+----------------------
+export class TaskComponent {
+  @Input() task:string="";
+  @Output() taskDeleted=new EventEmitter<void>();
+
+
+  onDeleteclick():void{
+    this.taskDeleted.emit();
+  }
+
+}
+-----------------------------
+HTML
+
+{{task}}
+<button (click)="onDeleteclick()">Delete</button>
+<br>
+--------------------------------------------------------
+parent 
+
+export class AppComponent {
+  title = 'Secondapp';
+
+  tasks:string[]=["task1","task2","task3"]
+
+  deleteTask(task:string){
+this.tasks=this.tasks.filter((t)=>t!==task)
+
+  }
+}
+---------------------------------------
+html
+{{title}}
+<app-task *ngFor="let t of tasks" [task]="t" (taskDeleted)="deleteTask(t)"></app-task>
+
+
+--------------------------------------------------------------------------------------------
 
