@@ -3,7 +3,9 @@ Commands
 2.npx ng new appname
 3.npx ng generate pipe Pipes/append --->creates pipe for appending in  pipes folder 
 4.npx ng generate service folder/serviceName
-5.
+5.npx npm install -g json-server
+      json-server --watch file.json --port 1111
+6.
 
 
 
@@ -245,7 +247,74 @@ use it in services and datatypes
   }
   -------------------------------------------------------------
 
+  json data:{
+  "languages":[
+    "abc",
+    "bcd",
+    "cdf"
+  ]
+  }
+    getPost(): Observable<Array<Strings> {
+    return this.http.get<Array<string>>(this.api);
+  }
+
+----------------------------------------------------------------------------------------------
+FORMS-
+1.template-driven
+2. Reactive
+
+import FormsModule in app.module.ts
+
+in componant import the datatype
+import {ngForm}
 
 
+in componant
 
+User:{name:string,email:string}={
+  name=""
+  email=""
+}
+
+html======>
+
+<form #userForm="ngForm">
+<input type="text" name="name" placeholder="name"></input>
+<input type="text" name="email" placeholder="email"></input>
+<button> submit</button>
+</form>
+
+--------------------------------------------------------------------------
+Reactive Forms
+
+import {FormsModule,ReactiveFormsModule}  in app.module.ts
+also add referece in imports
+
+
+import FormBuilder,formGroup ,validators in componant
+
+
+in app.componant.ts
+
+ userForm!:FormGroup;
+  constructor(private formBuilder:FormBuilder){
+  
+    this.userForm=this.formBuilder.group({
+      Name:['',Validators.required],
+      Email:['',Validators.email]
+    })
+
+  }
+  Submit(){
+    if(this.userForm.valid){
+      console.log(this.userForm.value)
+    }
+  }
+
+  Html=====>
+  <form [formGroup]="userForm" (ngSubmit)="Submit()">
+<input type="text"  name="Name" formControlName="Name" >
+<input type="text" name="Email" formControlName="Email">
+<button> submit</button>
+</form>
 

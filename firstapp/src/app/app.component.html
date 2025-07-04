@@ -29,6 +29,20 @@
 
 {{messages}}
 
-<div *ngFor="let i of posts">
+<!-- <div *ngFor="let i of posts">
   <h1>{{i.title}}</h1>
-</div>
+</div> -->
+
+
+
+<!-- <form #userForm="ngForm" (ngSubmit)="submitForm(userForm)">
+<input type="text" name="name" placeholder="name" [(ngModel)]="user.Name">
+<input type="text" name="email" placeholder="email" [(ngModel)]="user.email">
+<button> submit</button>
+</form> -->
+
+<form [formGroup]="userForm" (ngSubmit)="Submit()">
+<input type="text"  name="Name" formControlName="Name" >
+<input type="text" name="Email" formControlName="Email">
+<button> submit</button>
+</form>
