@@ -1,3 +1,5 @@
+import { Component } from '@angular/core';
+import { Routes, ActivatedRoute } from '@angular/router';
 Commands
 1.npx npm install -g @angular/cli
 2.npx ng new appname
@@ -396,4 +398,132 @@ html
 
 
 --------------------------------------------------------------------------------------------
+
+CRUD APP -
+
+ng g c Componants/note-form,note-list
+
+ng g s Services/note
+
+ng g i Interfaces/note
+
+
+app.module.ts
+imports
+formModule
+provideHttpClientmodule
+reacticeform module
+
+imports
+
+also
+
+provider-note service
+
+------------------------------------------------------------
+
+Routers and navigation
+
+---------------------------------------
+
+const routes: Routes = [
+  { path: '', redirectTo: 'notes', pathMatch: 'full' },
+  {path:'notes/:id',component:NoteComponent},
+  {path:'notes',component:NotesComponent}
+];
+
+<nav>
+    <a routerLink="notes">Home</a><br>
+    <a [routerLink]="['/notes','123']">123</a><br>
+    <a [routerLink]="['/notes','124']">124</a><br>
+    <a routerLink="notes">Home</a>
+
+</nav>
+<router-outlet />
+--------------------------------------------------------------------------
+
+so this displays the dynamic routes in the url link 
+
+so display in componant we use Activated Routes
+-------------------------------------------------------------------------
+
+import{ActivatedRoute}
+
+export class NoteComponent implements OnInit {
+  noteId!:string|null;
+  constructor(private route:ActivatedRoute){}
+  
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((p)=>{
+      this.noteId=p.get('id')  <------{path:'notes/:id',component:NoteComponent} :id
+    })
+
+  }
+
+  <p>{{noteId}}</p>
+
+  ------------------------------------------------------
+
+  now through Typescript function
+
+   <button (click)="gotoone()">123</button>
+    <button (click)="gototwo(124)">124</button>
+
+
+      gotoone(){
+    this.Routes.navigate(['/notes'])
+
+  }
+  gototwo(id:number){
+    this.Routes.navigate(['/notes','124'])
+
+  }
+
+  -------------------------------------------------
+  {path:"**" , title:"Unkown" Component:NotfoundCOmponant}
+
+  for the unknow routes
+  ---------------------------------------------------------
+
+nested Routes
+
+{path:'about',Component:AboutComponat,children:[
+  {path:'profile',Component:ProfileComp}
+  {path:'setting',Component:settingComp}
+]}
+
+in ABout Component.Html
+
+<li>
+<a routerLink="/about/profile">Profile</a>
+or
+<a [routerLink]="['profile']"
+
+
+<a routerLink="/about/setting">Profile</a>
+or
+<a [routerLink]="['settings']"
+
+
+//query params
+
+<a routerLink="/about/setting" [queryParams]="{id:123}">Profile</a>
+
+</li>
+<router-outlet></router-outlet>
+
+----------------------------------------
+export class NoteComponent implements OnInit {
+  noteId!:string|null;
+  constructor(private route:ActivatedRoute){}
+  
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((p)=>{
+      const id=params['id']
+    })
+
+  }
+
+  <p>{{noteId}}</p>
+-------------------------------------------------------------------------------------------------
 

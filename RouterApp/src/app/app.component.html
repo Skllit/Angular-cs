@@ -1,0 +1,18 @@
+<nav>
+  <ul>
+  <li>
+    <a routerLink="notes">Home</a><br>
+    <a [routerLink]="['/notes','123']">123</a><br>
+    <a [routerLink]="['/notes','124']">124</a><br>
+    <a routerLink="notes">Home</a>
+    <button (click)="gotoone()">123</button>
+    <button (click)="gototwo(124)">124</button>
+
+
+  </li>
+  </ul>
+</nav>
+
+
+
+<router-outlet />

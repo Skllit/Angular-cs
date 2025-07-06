@@ -1,0 +1,6 @@
+<h1>Add new Note</h1>
+<form [formGroup]="noteForm" (ngSubmit)="onFormSumbit( )">
+  <input formControlName="title" placeholder="Title">
+  <input formControlName="content" placeholder="content">
+  <button type="submit"> Add Note</button>
+</form>
