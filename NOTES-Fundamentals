@@ -448,6 +448,8 @@ so display in componant we use Activated Routes
 -------------------------------------------------------------------------
 
 import{ActivatedRoute}
+import { appendFile } from 'fs';
+import { loadavg } from 'os';
 
 export class NoteComponent implements OnInit {
   noteId!:string|null;
@@ -526,4 +528,115 @@ export class NoteComponent implements OnInit {
 
   <p>{{noteId}}</p>
 -------------------------------------------------------------------------------------------------
+Lazy loading
+
+when u create a feature 
+and it has certain componants 
+and when it loads it has imports of all the componant
+which can lag the app
+
+so instead to load the new feature only the required imports are enough
+
+so we can use the lazy load
+
+--------
+ng g module feature --route feature --moudle app.module 
+------------------------------------------------------------------------------------------
+✅ What Is Lazy Loading in Angular?
+Lazy loading means loading Angular feature modules only when they're needed (e.g., user navigates to a certain route), instead of loading all modules/components upfront.
+
+This improves:
+
+Initial load time
+
+Performance
+
+Memory usage
+
+✅ Why Lazy Loading?
+Imagine you have a large app:
+
+diff
+Copy
+Edit
+- Home
+- Products
+- Cart
+- Admin Panel
+- Analytics
+If all of these components and dependencies are loaded at the start — the app gets bloated and slow.
+
+Instead, only load what is necessary, and when a user navigates to /admin, you lazy load the AdminModule.
+
+✅ Angular Lazy Loading Setup (using CLI)
+You mentioned this command:
+
+bash
+Copy
+Edit
+ng g module feature --route feature --module app.module
+Let me explain and correct it:
+
+🔧 Correct Command:
+bash
+Copy
+Edit
+ng generate module feature --route feature --module app
+OR shorthand:
+
+bash
+Copy
+Edit
+ng g m feature --route feature --module app
+✅ What this does:
+Creates a new feature module: feature/feature.module.ts
+
+Creates a routing component inside feature: feature.component.ts
+
+Adds a route in app-routing.module.ts like this:
+
+ts
+Copy
+Edit
+{
+  path: 'feature',
+  loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule)
+}
+💡 This is lazy loading — Angular only loads this module when you go to /feature.
+
+✅ Behind the Scenes
+The CLI will generate:
+
+vbnet
+Copy
+Edit
+src/
+  app/
+    feature/
+      feature.module.ts         ✅ The lazily loaded module
+      feature-routing.module.ts ✅ Contains the route for this feature
+      feature.component.ts      ✅ The component to show on /feature
+✅ What Gets Updated?
+app-routing.module.ts (automatically)
+ts
+Copy
+Edit
+const routes: Routes = [
+  {
+    path: 'feature',
+    loadChildren: () =>
+      import('./feature/feature.module').then(m => m.FeatureModule)
+  }
+];
+feature-routing.module.ts (created)
+ts
+Copy
+Edit
+const routes: Routes = [
+  {
+    path: '',
+    component: FeatureComponent  // The default component for this feature
+  }
+];
+
 
